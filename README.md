@@ -1,2 +1,2 @@
 # AcFunFix-
-对AcFun Fix去掉长提示
+对 AcFun Fix 去掉长提示
