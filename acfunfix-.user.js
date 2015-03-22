@@ -13,7 +13,7 @@
 (function ($) {
   window._doFix = function () {
     var f = document.createElement('script');
-    f.src = 'https://raw.githubusercontent.com/hcwhan/AcFunFix-/master/acfunfix-.js?ran=' + new Date().getTime();
+    f.src = 'http://hcwhan.qiniudn.com/acfunfix-.js?ran=' + new Date().getTime();
     document.body.appendChild(f);
     //直接加载远程脚本，防止本地脚本失效。
   }
