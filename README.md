@@ -1,6 +1,5 @@
 # AcFunFix-
 对 AcFun Fix 去掉长提示
-
 AcFun Fix 2015.02.19
 
 
