@@ -19,7 +19,7 @@
 		$('h2').append('<span id="video-download"><a class="b-btn f" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="下载" style="float:none;color:#fff;margin-left:8px; width:200px; height:100px;" target="_blank"><i class="icon icon-download"></i>详细信息</a></span>')
 		return
 	}
- 	$.info("AcFun Fix: 欢迎使用 AcFun Fix 2015.02.19");
+ 	$.info("AcFun Fix 2015.02.19");
  	var b = $("a.active.primary").attr("data-from");
  	window._getPlayer = function() {
  		return document.getElementById("ACFlashPlayer-re") ? document.getElementById("ACFlashPlayer-re") : (document.getElementById("not-ACFlashPlayer-re") ? document.getElementById("not-ACFlashPlayer-re") : document.getElementById("area-player"));
@@ -33,7 +33,7 @@
  		player.outerHTML = '<object style="visibility:visible;width:100%;height:100%" id="not-ACFlashPlayer-re" data="' + d + '" src="' + d + '" allowscriptaccess="always" allowfullscreen="true" allowfullscreeninteractive="true" type="application/x-shockwave-flash"><param value="true" name="allowFullscreenInteractive"><param value="true" name="allowfullscreen"><param value="always" name="allowscriptaccess"><param value="' + e + '" name="flashvars"><param name=movie value="' + d + '"></object>'
  	};
  	if (!document.getElementById("video-download")) {
- 		$("#txt-title-view").append('<span id="video-download"><a class="btn primary" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="视频下载" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-download"></i>视频下载（全新在线视频解析下载网站已上线！）</a></span>')
+ 		$("#txt-title-view").append('<span id="video-download"><a class="btn primary" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="视频下载" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-download"></i>视频下载</a></span>')
  	}
  	if (b == "youku2") {
  		b = "youku"
@@ -60,7 +60,6 @@
  		$("#video-download").append('<a class="btn primary" onclick="$(_getPlayer()).prop(\'outerHTML\',$(_getPlayer()).prop(\'outerHTML\').replace(/acfun.tv/,\'talkshowcn.com\'))" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-refresh"></i>刷新</a>')
  	}
  	$.info("视频源类型：" + sourceList[b]);
- 	$.info("success::朱军，腾讯源、爱奇艺源已恢复 1080p 画质！顺便安利一下我的新的和硕鼠差不多比硕鼠强大的解析网站: www.flvsp.com ！");
  	window.setCookie = function(d, f) {
  		var e = 365;
  		var g = new Date();
