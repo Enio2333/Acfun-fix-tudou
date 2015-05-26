@@ -33,7 +33,7 @@
  		player.outerHTML = '<object style="visibility:visible;width:100%;height:100%" id="not-ACFlashPlayer-re" data="' + d + '" src="' + d + '" allowscriptaccess="always" allowfullscreen="true" allowfullscreeninteractive="true" type="application/x-shockwave-flash"><param value="true" name="allowFullscreenInteractive"><param value="true" name="allowfullscreen"><param value="always" name="allowscriptaccess"><param value="' + e + '" name="flashvars"><param name=movie value="' + d + '"></object>'
  	};
  	if (!document.getElementById("video-download")) {
- 		$("#txt-title-view").append('<span id="video-download"><a class="btn primary" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="视频下载" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-download"></i>视频下载</a></span>')
+ 		$("#txt-title-view").append('<span id="video-download"><a class="btn primary" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="下载" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-download"></i>下载</a></span>')
  	}
  	if (b == "youku2") {
  		b = "youku"
