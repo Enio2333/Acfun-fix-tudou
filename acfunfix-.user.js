@@ -8,7 +8,7 @@
 // @include     http://wenzhou.acfun.tv/v/*
 // @include     http://www.acfun.tv/a/*
 // @include     http://acfun.tv/a/*
-// @version     1.0.0.2
+// @version     1.0.0.3
 // @grant       none
 // @run-at      document-end
 // ==/UserScript==
