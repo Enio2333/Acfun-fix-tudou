@@ -1,4 +1,4 @@
-﻿ (function() {
+ (function() {
  	if (!document.domain) {
  		alert("你拖到书签栏使用了么？书签栏应该是在浏览器地址栏下方的位置。如果你确定你是在书签栏使用的，那么可能你的浏览器太辣鸡（比如360），换个现代的浏览器吧（火狐、谷歌、IE11都行的）");
  		return
@@ -11,16 +11,8 @@
  		alert("进AcFun再说...");
  		return
  	}
-	if (document.domain.toLowerCase().indexOf("bilibili.com") > 0){
-		var _start = document.body.innerHTML.indexOf("cid=")+4;
-		var _end = document.body.innerHTML.indexOf("&",_start);
-		var _length = _end - _start;
-		var cid = document.body.innerHTML.substr(_start,_length);
-		$('h2').append('<span id="video-download"><a class="b-btn f" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="下载" style="float:none;color:#fff;margin-left:8px; width:200px; height:100px;" target="_blank"><i class="icon icon-download"></i>详细信息</a></span>')
-		return
-	}
  	$.info("AcFun Fix 2015.02.19");
- 	var b = $("a.active.primary").attr("data-from");
+ 	var b = $("a.active.primary").data("from");
  	window._getPlayer = function() {
  		return document.getElementById("ACFlashPlayer-re") ? document.getElementById("ACFlashPlayer-re") : (document.getElementById("not-ACFlashPlayer-re") ? document.getElementById("not-ACFlashPlayer-re") : document.getElementById("area-player"));
  	};
@@ -32,8 +24,8 @@
  		};
  		player.outerHTML = '<object style="visibility:visible;width:100%;height:100%" id="not-ACFlashPlayer-re" data="' + d + '" src="' + d + '" allowscriptaccess="always" allowfullscreen="true" allowfullscreeninteractive="true" type="application/x-shockwave-flash"><param value="true" name="allowFullscreenInteractive"><param value="true" name="allowfullscreen"><param value="always" name="allowscriptaccess"><param value="' + e + '" name="flashvars"><param name=movie value="' + d + '"></object>'
  	};
- 	if (!document.getElementById("video-download")) {
- 		$("#txt-title-view").append('<span id="video-download"><a class="btn primary" href="http://www.flvsp.com/?url='+encodeURIComponent(location.href)+'" title="下载" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-download"></i>下载</a></span>')
+ 	if (!document.getElementById("video-download") && b != "iqiyi" && b != "pps") {
+ 		$("#txt-title-view").append('<span id="video-download"><a class="btn primary" href="http://www.talkshowcn.com/page/acfun_danmu.html?vid='+$("a.active.primary").data("vid")+'&p='+(location.href.match(/_(\d+)/)?location.href.match(/_(\d+)/)[1]:"1")+'" title="下载" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-download"></i>下载</a></span>')
  	}
  	if (b == "youku2") {
  		b = "youku"
@@ -55,11 +47,28 @@
  		"56": "56网",
  		"pptv": "PPTV"
  	};
+	if(typeof(sourceList[b]) == "undefined"){
+		$.ajax({
+			url: "http://www.acfun.tv/video/getVideo.aspx?id="+$("a.active.primary").data("vid"),
+			async: false,
+			success:function(data){
+				$("a.active.primary").data("from",data.sourceType);
+				$("a.active.primary").data("sid",data.sourceId);
+				b = data.sourceType;
+			}
+		});
+	};
  	if (b != "letv") {
- 		c("http://static.skydust.net/private/acfun/AcPlayer201412121_D.swf", "oldcs=1&host=http://www.talkshowcn.com&vid=" + $("a.active.primary").attr("data-vid") + "|" + b + "|" + $("a.active.primary").attr("data-sid"));
- 		$("#video-download").append('<a class="btn primary" onclick="$(_getPlayer()).prop(\'outerHTML\',$(_getPlayer()).prop(\'outerHTML\').replace(/acfun.tv/,\'talkshowcn.com\'))" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-refresh"></i>刷新</a>')
- 	}
- 	$.info("视频源类型：" + sourceList[b]);
+		if(b == "iqiyi"||b == "pps"){
+			$.info("由于一些版权方面的原因，爱奇艺源停止替换播放器。请各位理解。");
+		}else{
+			c("http://static.skydust.net/private/acfun/AcPlayer201412121_D.swf", "oldcs=1&host=http://www.talkshowcn.com&vid=" + $("a.active.primary").data("vid") + "|" + b + "|" + $("a.active.primary").data("sid"));
+			$("#video-download").append('<a class="btn primary" onclick="$(_getPlayer()).prop(\'outerHTML\',$(_getPlayer()).prop(\'outerHTML\').replace(/acfun.tv/,\'talkshowcn.com\'))" style="float:none;color:#fff;margin-left:8px;" target="_blank"><i class="icon icon-refresh"></i>刷新</a>');
+			$.info("视频源类型：" + sourceList[b]);
+		}
+ 	}else{
+		$.info("乐视云源本程序不会进行任何处理，出现问题是 AcFun 的问题，请联系客服。");
+	}
  	window.setCookie = function(d, f) {
  		var e = 365;
  		var g = new Date();
@@ -81,8 +90,4 @@
  			$("#hideroom").click()
  		}
  	};
- 	if (a("fuckqqtips") != 1 && b == 'qq') {
- 		setCookie("fuckqqtips", 1);
- 		alert("因为很重要，所以弹窗提示一次：腾讯源视频解析失败请多点播放器上方的刷新按钮刷新几次试试！如果其他源都没问题，腾讯源视频刷新几次还是放不了，请在聊天室反馈；如果所有视频源都不能加载，那是你网络问题。无视、直接跳过这个弹窗而引起的问题，我不但不会帮你，还会骂你。");
- 	}
  })();
