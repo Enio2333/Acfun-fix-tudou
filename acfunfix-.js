@@ -67,7 +67,7 @@
 			$.info("视频源类型：" + sourceList[b]);
 		}
  	}else{
-		$.info("乐视云源本程序不会进行任何处理，出现问题是 AcFun 的问题，请联系客服。");
+		$.info(" ");
 	}
  	window.setCookie = function(d, f) {
  		var e = 365;
