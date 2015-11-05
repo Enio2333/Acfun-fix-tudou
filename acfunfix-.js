@@ -67,7 +67,7 @@
 			$.info("视频源类型：" + sourceList[b]);
 		}
  	}else{
-		$.info(" ");
+		$.info("乐视云源不会进行处理。");
 	}
  	window.setCookie = function(d, f) {
  		var e = 365;
