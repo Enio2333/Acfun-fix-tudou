@@ -7,10 +7,6 @@
  		alert("你应该是加到收藏夹或者拖到书签栏，而不是点我");
  		return
  	}
- 	if (document.domain.toLowerCase().indexOf("acfun.tv") < 0 && document.domain.toLowerCase().indexOf("bilibili.com") < 0) {
- 		alert("进AcFun再说...");
- 		return
- 	}
  	$.info("AcFun Fix 2015.02.19");
  	var b = $("a.active.primary").data("from");
  	window._getPlayer = function() {
